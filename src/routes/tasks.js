@@ -20,6 +20,15 @@ export const routes = [
     path: "/tasks",
     handler: (req, res) => {
       const { title, description } = req.body;
+
+      if (!title || !description) {
+        return res.writeHead(400).end(
+          JSON.stringify({
+            message: "Some fields are missing",
+          })
+        );
+      }
+
       const now = new Date();
 
       const newTask = {
