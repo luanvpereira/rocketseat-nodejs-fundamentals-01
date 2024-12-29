@@ -53,7 +53,10 @@ export class Database {
         ...data,
         updated_at: new Date(),
       };
+
       this.#persist();
+    } else {
+      throw new Error("The registry does not exist.");
     }
   }
 
@@ -63,6 +66,8 @@ export class Database {
     if (rowIndex > -1) {
       this.#database[table].splice(rowIndex, 1);
       this.#persist();
+    } else {
+      throw new Error("The registry does not exist.");
     }
   }
 }

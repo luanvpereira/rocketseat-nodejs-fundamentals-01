@@ -52,12 +52,20 @@ export const routes = [
       const { id } = req.params;
       const { title, description } = req.body;
 
-      database.update("tasks", id, {
-        title,
-        description,
-      });
+      try {
+        database.update("tasks", id, {
+          title,
+          description,
+        });
 
-      return res.writeHead(204).end();
+        return res.writeHead(204).end();
+      } catch (error) {
+        return res.writeHead(400).end(
+          JSON.stringify({
+            message: error.message,
+          })
+        );
+      }
     },
   },
   {
@@ -66,11 +74,19 @@ export const routes = [
     handler: (req, res) => {
       const { id } = req.params;
 
-      database.update("tasks", id, {
-        completed_at: new Date(),
-      });
+      try {
+        database.update("tasks", id, {
+          completed_at: new Date(),
+        });
 
-      return res.writeHead(204).end();
+        return res.writeHead(204).end();
+      } catch (error) {
+        return res.writeHead(400).end(
+          JSON.stringify({
+            message: error.message,
+          })
+        );
+      }
     },
   },
   {
@@ -79,9 +95,17 @@ export const routes = [
     handler: (req, res) => {
       const { id } = req.params;
 
-      database.delete("tasks", id);
+      try {
+        database.delete("tasks", id);
 
-      return res.writeHead(204).end();
+        return res.writeHead(204).end();
+      } catch (error) {
+        return res.writeHead(400).end(
+          JSON.stringify({
+            message: error.message,
+          })
+        );
+      }
     },
   },
 ];
