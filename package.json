@@ -1,11 +1,12 @@
 {
-  "name": "01-fundamentos-nodejs",
+  "name": "rocketseat-nodejs-fundamentals-01",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "import:dev": "node --watch streams/import-stream-http-server.js"
   },
   "keywords": [],
   "author": "",
